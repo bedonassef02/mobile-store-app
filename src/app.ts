@@ -10,7 +10,7 @@ export const setupExpressApp = () => {
 
   // app.use(morgan('dev'));
 
-  // app.use('/auth', require('./routers/user.router'));
+  app.use('/auth', require('./routers/user.router'));
 
   app.use(notFoundException);
 
