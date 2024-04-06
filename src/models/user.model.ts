@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../config/database/sequelize.config';
-
+import { UserRole } from '../utils/types/user-role.type';
 
 export const User = sequelize.define('User', {
   id: {
@@ -28,4 +28,9 @@ export const User = sequelize.define('User', {
     type: DataTypes.STRING(128),
     defaultValue: 'default.png',
   },
+  role: {
+    type: DataTypes.ENUM(...Object.values(UserRole)),
+    allowNull: false,
+    defaultValue: UserRole.USER,
+ },
 });
