@@ -1,4 +1,4 @@
-import { DatabaseConfig, SequelizeDialect } from "../utils/types/database-config.type";
+import { DatabaseConfig, SequelizeDialect } from '../utils/types/database-config.type';
 
 // Function to get the database configuration
 function getDatabaseConfig(): DatabaseConfig {
@@ -10,9 +10,11 @@ function getDatabaseConfig(): DatabaseConfig {
     password: process.env.DATABASE_PASSWORD || '',
     host: process.env.DATABASE_HOST || 'localhost',
     dialect,
-    logging: process.env.DATABASE_LOGGING === "true"
+    logging: process.env.DATABASE_LOGGING === 'true',
   };
 }
+
+export const getSecretKey = () => process.env.SECRET_KEY || '';
 
 // Export the database configuration
 export const databaseConfig = getDatabaseConfig();
