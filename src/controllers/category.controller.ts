@@ -4,7 +4,7 @@ import { CreateCategoryDto } from '../utils/dtos/category/create-category.dto';
 import { CategoryInstance } from '../utils/instances/category.instance';
 import { ICrudController } from '../utils/interfaces/crud-controller.interface';
 
-export class CategoryController implements ICrudController{
+export class CategoryController implements ICrudController {
   constructor(private categoryService: CategoryService) {}
 
   async findAll(req: Request, res: Response): Promise<void> {

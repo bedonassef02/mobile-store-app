@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const app_1 = require("./app");
-const database_config_1 = require("./config/database/database.config");
+const database_config_1 = require("./config/database.config");
 const graceful_shutdown_1 = require("./utils/error-handling/graceful-shutdown");
 process.loadEnvFile('./.env');
 const startApp = () => __awaiter(void 0, void 0, void 0, function* () {
