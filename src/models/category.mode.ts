@@ -2,22 +2,27 @@ import { DataTypes } from 'sequelize';
 import { sequelize } from '../config/database/sequelize.config';
 
 export const Category = sequelize.define('Category', {
- id: {
+  id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
- },
- name: {
-    type: DataTypes.STRING(128),
+  },
+  name: {
+    type: DataTypes.STRING(64),
     allowNull: false,
- },
- parentId: {
+  },
+  slug: {
+    type: DataTypes.STRING(64),
+    allowNull: false,
+    unique: true,
+  },
+  parentId: {
     type: DataTypes.INTEGER,
     references: {
       model: 'categories',
       key: 'id',
     },
- },
+  },
 });
 
 // Define associations

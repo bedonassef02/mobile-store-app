@@ -1,8 +1,7 @@
 import { DatabaseConfig, SequelizeDialect } from '../utils/types/database-config.type';
 
-// Function to get the database configuration
 function getDatabaseConfig(): DatabaseConfig {
-  const dialect = (process.env.DATABASE_DIALECT || 'mysql') as SequelizeDialect;
+  const dialect: SequelizeDialect = (process.env.DATABASE_DIALECT || 'mysql') as SequelizeDialect;
 
   return {
     name: process.env.DATABASE_NAME || 'mobile-store',

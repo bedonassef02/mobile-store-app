@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.databaseConfig = void 0;
-// Function to get the database configuration
+exports.databaseConfig = exports.getSecretKey = void 0;
 function getDatabaseConfig() {
     const dialect = (process.env.DATABASE_DIALECT || 'mysql');
     return {
@@ -10,7 +9,10 @@ function getDatabaseConfig() {
         password: process.env.DATABASE_PASSWORD || '',
         host: process.env.DATABASE_HOST || 'localhost',
         dialect,
+        logging: process.env.DATABASE_LOGGING === 'true',
     };
 }
+const getSecretKey = () => process.env.SECRET_KEY || '';
+exports.getSecretKey = getSecretKey;
 // Export the database configuration
 exports.databaseConfig = getDatabaseConfig();

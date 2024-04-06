@@ -1,12 +1,12 @@
 import * as bcrypt from 'bcrypt';
 import { UserService } from './user.service';
-import { SignUpDto } from '../utils/dtos/sign-up.dto';
-import { SignInDto } from '../utils/dtos/sign-in.dto';
+import { SignUpDto } from '../utils/dtos/auth/sign-up.dto';
+import { SignInDto } from '../utils/dtos/auth/sign-in.dto';
 import { TokenService } from './token.service';
-import { Payload } from '../utils/dtos/payload.dto';
+import { Payload } from '../utils/dtos/auth/payload.dto';
 import { createPayload } from '../utils/helpers/payload.helper';
-import { UserDto } from '../utils/dtos/user.dto';
-import { AuthDto } from '../utils/dtos/auth.dto';
+import { UserDto } from '../utils/dtos/users/user.dto';
+import { AuthDto } from '../utils/dtos/auth/auth.dto';
 
 export class AuthService {
   constructor(
@@ -17,19 +17,19 @@ export class AuthService {
   private readonly SALT: number = 10;
 
   async signUp(signUpDto: SignUpDto): Promise<AuthDto> {
-    signUpDto.password = await this.hashPassword(signUpDto.password)
+    signUpDto.password = await this.hashPassword(signUpDto.password);
     const user: UserDto = await this.userService.create(signUpDto);
     return this.generateResponse(user);
   }
-  async signIn(signInDto: SignInDto):Promise<AuthDto | null> {
-    const user:UserDto = await this.userService.findByEmail(signInDto.email);
-    if(user && (await this.comparePassword(signInDto.password, user.password))){
+  async signIn(signInDto: SignInDto): Promise<AuthDto | null> {
+    const user: UserDto = await this.userService.findByEmail(signInDto.email);
+    if (user && (await this.comparePassword(signInDto.password, user.password))) {
       return this.generateResponse(user);
     }
     return null;
   }
 
-  private async hashPassword(password: string):Promise<string> {
+  private async hashPassword(password: string): Promise<string> {
     return await bcrypt.hash(password, this.SALT);
   }
 
@@ -37,9 +37,9 @@ export class AuthService {
     return await bcrypt.compare(password, hash);
   }
 
-  private generateResponse(user:UserDto):AuthDto{
+  private generateResponse(user: UserDto): AuthDto {
     const payload: Payload = createPayload(user);
     const token = this.tokenService.generate(payload);
-    return {user: payload, token};
+    return { user: payload, token };
   }
 }

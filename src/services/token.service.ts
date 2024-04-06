@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { getSecretKey } from '../config/env-var';
-import { Payload } from '../utils/dtos/payload.dto';
+import { Payload } from '../utils/dtos/auth/payload.dto';
 
 export class TokenService {
   private SECRET_KEY: string = '';

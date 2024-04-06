@@ -1,6 +1,6 @@
-import { setupExpressApp } from "./app";
-import { connectToDatabase } from "./config/database/database.config";
-import {handleGracefulShutdown} from "./utils/error-handling/graceful-shutdown";
+import { setupExpressApp } from './app';
+import { connectToDatabase } from './config/database/database.config';
+import { handleGracefulShutdown } from './utils/error-handling/graceful-shutdown';
 
 process.loadEnvFile('./.env');
 
@@ -9,7 +9,7 @@ const startApp = async () => {
 
   const app = setupExpressApp();
 
-  const port:number = parseInt(process.env.PORT + '') || 3000;
+  const port: number = parseInt(process.env.PORT + '') || 3000;
 
   const server = app.listen(port, () => {
     console.log(`Listening on port ${port}`);

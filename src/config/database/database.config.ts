@@ -1,6 +1,6 @@
 import { sequelize } from './sequelize.config';
 
-export const connectToDatabase = async () => {
+export const connectToDatabase = async (): Promise<void> => {
   try {
     await sequelize.authenticate();
     console.log('Connection to the database has been established successfully.');

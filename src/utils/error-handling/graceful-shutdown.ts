@@ -4,7 +4,7 @@ function closeServerAndExit() {
 }
 
 // Graceful shutdown
-export function handleGracefulShutdown(server:any, signal:any) {
+export function handleGracefulShutdown(server: any, signal: any) {
   console.log(`Received ${signal}. Shutting down gracefully...`);
   server.close(closeServerAndExit);
 }
