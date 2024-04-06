@@ -1,5 +1,5 @@
 import { setupExpressApp } from "./app";
-import { connectToDatabase } from "./config/database.config";
+import { connectToDatabase } from "./config/database/database.config";
 import {handleGracefulShutdown} from "./utils/error-handling/graceful-shutdown";
 
 process.loadEnvFile('./.env');
