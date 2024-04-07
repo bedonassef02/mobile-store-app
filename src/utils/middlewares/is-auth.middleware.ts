@@ -8,6 +8,7 @@ export const isAuthMiddleware = (
   next: NextFunction,
 ) => {
   const token: string | undefined = req.headers.authorization?.split(' ')[1];
+
   if (!token) {
     res.status(400).json({ message: 'Token is required' });
     return;

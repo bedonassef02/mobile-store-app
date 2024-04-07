@@ -7,7 +7,7 @@ import { CreateProductDto } from '../utils/dtos/product/create-product.dto';
 export class ProductController {
   constructor(private productService: ProductService) {}
 
-  async create(req: Request, res: Response): Promise<void> {
+  async create(req: any, res: Response): Promise<void> {
     const createProductDto: CreateProductDto = req.body;
     const product: ProductInstance =
       await this.productService.create(createProductDto);

@@ -1,5 +1,6 @@
 import { SignUpDto } from '../utils/dtos/auth/sign-up.dto';
-import { User } from '../models/user.model';
+
+const { User } = require('../models/user.model');
 
 export class UserService {
   async findOne(id: number) {

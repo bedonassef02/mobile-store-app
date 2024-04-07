@@ -1,8 +1,7 @@
+process.loadEnvFile('./.env');
 import { setupExpressApp } from './app';
 import { connectToDatabase } from './config/database/database.config';
 import { handleGracefulShutdown } from './utils/error-handling/graceful-shutdown';
-
-process.loadEnvFile('./.env');
 
 const startApp = async () => {
   await connectToDatabase();

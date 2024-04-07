@@ -7,6 +7,7 @@ import { Payload } from '../utils/dtos/auth/payload.dto';
 import { createPayload } from '../utils/helpers/payload.helper';
 import { UserDto } from '../utils/dtos/users/user.dto';
 import { AuthDto } from '../utils/dtos/auth/auth.dto';
+import { signUpListener } from '../utils/events/sign-up.listener';
 
 export class AuthService {
   constructor(
@@ -19,6 +20,7 @@ export class AuthService {
   async signUp(signUpDto: SignUpDto): Promise<AuthDto> {
     signUpDto.password = await this.hashPassword(signUpDto.password);
     const user: UserDto = await this.userService.create(signUpDto);
+    signUpListener(user.id);
     return this.generateResponse(user);
   }
 
