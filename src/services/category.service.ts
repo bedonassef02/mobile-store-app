@@ -1,4 +1,4 @@
-import { Category } from '../models/category.mode';
+import { Category } from '../models/category.model';
 import { CreateCategoryDto } from '../utils/dtos/category/create-category.dto';
 import { UpdateCategoryDto } from '../utils/dtos/category/update-category.dto';
 import { CategoryInstance } from '../utils/instances/category.instance';
@@ -12,8 +12,8 @@ export class CategoryService {
     return await Category.create(createCategoryDto);
   }
 
-  async findByPk(pk: number): Promise<any> {
-    return await Category.findByPk(pk);
+  async findByPk(id: number): Promise<any> {
+    return await Category.findByPk(id);
   }
 
   async findOne(slug: string): Promise<any> {
@@ -21,7 +21,7 @@ export class CategoryService {
   }
 
   async update(id: number, updateCategoryDto: UpdateCategoryDto): Promise<any> {
-    await Category.update(updateCategoryDto, { where: { id }, returning: true });
+    await Category.update(updateCategoryDto, { where: { id } });
     return this.findByPk(id);
   }
 
@@ -33,7 +33,7 @@ export class CategoryService {
     return await Category.findAll({ where: { parentId: category.id } });
   }
 
-  async delete(id: string): Promise<void> {
+  async delete(id: number): Promise<void> {
     await Category.destroy({ where: { id } });
   }
 

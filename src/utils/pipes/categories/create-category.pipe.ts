@@ -11,7 +11,8 @@ export const createCategoryPipe = [
     .withMessage('category name is required')
     .custom(async (name: string, { req }): Promise<boolean> => {
       const slug: string = slugify(name, { lower: true, strict: true });
-      const category: CategoryInstance | null = await categoryService.findOne(slug);
+      const category: CategoryInstance | null =
+        await categoryService.findOne(slug);
       if (category) {
         throw new Error(`category slug ${slug} already exists`);
       }
@@ -23,7 +24,8 @@ export const createCategoryPipe = [
     .isNumeric()
     .withMessage('category parentId must be a number')
     .custom(async (parentId) => {
-      const category: CategoryInstance | null = await categoryService.findByPk(parentId);
+      const category: CategoryInstance | null =
+        await categoryService.findByPk(parentId);
       if (!category) {
         throw new Error(`Cannot find category ${parentId}`);
       }

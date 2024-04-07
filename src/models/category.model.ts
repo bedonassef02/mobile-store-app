@@ -10,11 +10,17 @@ export const Category = sequelize.define('Category', {
   name: {
     type: DataTypes.STRING(64),
     allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
   },
   slug: {
     type: DataTypes.STRING(64),
     allowNull: false,
     unique: true,
+    validate: {
+      notEmpty: true,
+    },
   },
   parentId: {
     type: DataTypes.INTEGER,

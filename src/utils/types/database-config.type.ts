@@ -1,6 +1,11 @@
 import { Dialect } from 'sequelize';
 
-export type SequelizeDialect = 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql';
+export type SequelizeDialect =
+  | 'mysql'
+  | 'postgres'
+  | 'sqlite'
+  | 'mariadb'
+  | 'mssql';
 
 // Define an interface for the database configuration
 export interface DatabaseConfig {

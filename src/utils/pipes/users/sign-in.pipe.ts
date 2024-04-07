@@ -3,7 +3,10 @@ import { handleValidationErrorsMiddleware } from '../../error-handling/validatio
 import { validatePasswordComplexity } from './common';
 
 export const signInPipe = [
-  body('email').isEmail().withMessage('Please provide a valid email address').normalizeEmail(),
+  body('email')
+    .isEmail()
+    .withMessage('Please provide a valid email address')
+    .normalizeEmail(),
   validatePasswordComplexity,
   handleValidationErrorsMiddleware,
 ];

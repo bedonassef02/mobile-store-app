@@ -8,5 +8,5 @@ export const sequelize: Sequelize = new Sequelize(
     host: databaseConfig.host,
     dialect: databaseConfig.dialect,
     logging: databaseConfig.logging,
-  }
+  },
 );

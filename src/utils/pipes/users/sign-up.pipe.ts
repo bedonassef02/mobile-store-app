@@ -1,6 +1,10 @@
 import { body } from 'express-validator';
 import { handleValidationErrorsMiddleware } from '../../error-handling/validation-error';
-import { validateEmailFormat, validatePasswordComplexity, checkEmailUniqueness } from './common';
+import {
+  validateEmailFormat,
+  validatePasswordComplexity,
+  checkEmailUniqueness,
+} from './common';
 
 export const signUpPipe = [
   body('name')

@@ -3,7 +3,9 @@ import { sequelize } from './sequelize.config';
 export const connectToDatabase = async (): Promise<void> => {
   try {
     await sequelize.authenticate();
-    console.log('Connection to the database has been established successfully.');
+    console.log(
+      'Connection to the database has been established successfully.',
+    );
     await sequelize.sync();
     console.log('Database & tables created!');
   } catch (error) {

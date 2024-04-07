@@ -8,7 +8,9 @@ import { signInPipe } from '../utils/pipes/users/sign-in.pipe';
 
 export const router = Router();
 
-const authController = new AuthController(new AuthService(new UserService(), new TokenService()));
+const authController = new AuthController(
+  new AuthService(new UserService(), new TokenService()),
+);
 
 router.post('/sign-up', signUpPipe, authController.signUp.bind(authController));
 router.post('/sign-in', signInPipe, authController.signIn.bind(authController));

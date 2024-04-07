@@ -1,11 +1,12 @@
 import { UserService } from '../../../services/user.service';
-
-const { body } = require('express-validator');
+import { body } from 'express-validator';
 
 const userService = new UserService();
 
 // Validate email format and normalize it
-export const validateEmailFormat = body('email').isEmail().withMessage('Please provide a valid email address');
+export const validateEmailFormat = body('email')
+  .isEmail()
+  .withMessage('Please provide a valid email address');
 
 // Validate password complexity
 export const validatePasswordComplexity = body('password')
