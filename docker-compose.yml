@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  express_server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${PORT}:3000"  # Use PORT environment variable
+    environment:
+      - NODE_ENV=production
+      - DATABASE_HOST=db
+      - DATABASE_USERNAME=root
+      - DATABASE_PASSWORD=password
+      - DATABASE_NAME=mobile-store
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - SECRET_KEY=${SECRET_KEY}
+      - PAYMENT_SECRET_KEY=${PAYMENT_SECRET_KEY}
+      - APP_URL=${APP_URL}
+    depends_on:
+      - db
+      - redis
+
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password  # Specify the MySQL root password here
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"

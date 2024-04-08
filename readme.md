@@ -46,6 +46,10 @@ An online ecommerce platform for mobile devices built with Express.js, MYSQL, Ty
 
    ```bash
    npm start
+   
+   - for production
+      - npm run build
+      - npm run start:prod
    ```
 
    The application will be available at [http://localhost:3000](http://localhost:3000).

@@ -2,7 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.databaseConfig = exports.getSecretKey = void 0;
 function getDatabaseConfig() {
-    const dialect = (process.env.DATABASE_DIALECT || 'mysql');
+    const dialect = (process.env.DATABASE_DIALECT ||
+        'mysql');
     return {
         name: process.env.DATABASE_NAME || 'mobile-store',
         username: process.env.DATABASE_USERNAME || 'root',
