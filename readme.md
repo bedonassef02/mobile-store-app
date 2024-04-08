@@ -1,6 +1,6 @@
 # Mobile Store Ecommerce App with Express.js and MongoDB
 
-An online ecommerce platform for mobile devices built with Express.js, MongoDB, and other technologies.
+An online ecommerce platform for mobile devices built with Express.js, MYSQL, Typescript and other technologies.
 
 ## Features
 
