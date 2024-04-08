@@ -25,7 +25,10 @@ export const authService: AuthService = new AuthService(
 export const productService: ProductService = new ProductService(imageService);
 
 export const cartService: CartService = new CartService(cartProductService);
-export const orderService: OrderService = new OrderService(cartProductService);
+export const orderService: OrderService = new OrderService(
+  cartProductService,
+  cartService,
+);
 export const orderItemService: OrderItemService = new OrderItemService(
   productService,
 );

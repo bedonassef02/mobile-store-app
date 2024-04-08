@@ -3,20 +3,29 @@ import { CreateOrderDto } from '../utils/dtos/order/create-order.dto';
 import { CartProductService } from './cart-product.service';
 import { CreateCartProductDto } from '../utils/dtos/cart/create-cart-product.dto';
 import { OrderInstance } from '../utils/instances/order.instance';
-import { eventEmitter } from '../utils/events';
-import { OrderListenerDto } from '../utils/events/create-order.listener';
+import {
+  createOrderListener,
+  OrderListenerDto,
+} from '../utils/events/create-order.listener';
 import { calculatePrice } from '../utils/helpers/calculate-order-price.helper';
+import { CartService } from './cart.service';
+import { CartInstance } from '../utils/instances/cart.instance';
 
 export class OrderService {
-  constructor(private cartProductService: CartProductService) {}
+  constructor(
+    private cartProductService: CartProductService,
+    private cartService: CartService,
+  ) {}
 
-  async create(userId: number, cartId: number): Promise<OrderInstance> {
+  async create(userId: number): Promise<OrderInstance> {
+    const cart: CartInstance = await this.cartService.findOne(userId);
+    const cartId: number = cart.id;
     const cartItems: CreateCartProductDto[] =
       await this.cartProductService.findAll(cartId);
     const totalPrice: number = await calculatePrice(cartItems);
     const order: OrderInstance = await this.createOrder(userId, totalPrice);
     const orderDto: OrderListenerDto = { orderId: order.id, cartId, cartItems };
-    eventEmitter.emit('order.created', orderDto);
+    await createOrderListener(orderDto);
     return order;
   }
 

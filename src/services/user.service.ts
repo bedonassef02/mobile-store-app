@@ -1,6 +1,6 @@
 import { SignUpDto } from '../utils/dtos/auth/sign-up.dto';
 import { User } from '../models/user.model';
-import { eventEmitter } from '../utils/events';
+import { signUpListener } from '../utils/events/sign-up.listener';
 
 export class UserService {
   async findOne(id: number): Promise<any> {
@@ -9,7 +9,7 @@ export class UserService {
 
   async create(signUpDto: SignUpDto): Promise<any> {
     const user: any = await User.create(signUpDto);
-    eventEmitter.emit('user.created', user.id);
+    await signUpListener(user.id);
     return user;
   }
 

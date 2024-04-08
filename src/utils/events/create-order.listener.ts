@@ -4,7 +4,6 @@ import { CreateCartProductDto } from '../dtos/cart/create-cart-product.dto';
 import { OrderItemService } from '../../services/order-item.service';
 import { ProductService } from '../../services/product.service';
 import { ImageService } from '../../services/image.service';
-import { eventEmitter } from './index';
 
 const orderItemService: OrderItemService = new OrderItemService(
   new ProductService(new ImageService()),
@@ -16,9 +15,6 @@ export type OrderListenerDto = {
   cartItems: CreateCartProductDto[];
   cartId: number;
 };
-eventEmitter.on('order.created', async (order: OrderListenerDto) => {
-  await createOrderListener(order);
-});
 export const createOrderListener = async (order: OrderListenerDto) => {
   await createOrderItems(order.orderId, order.cartItems);
   await truncateCart(order.cartId);

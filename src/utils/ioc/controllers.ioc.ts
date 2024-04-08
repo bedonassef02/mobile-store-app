@@ -4,6 +4,7 @@ import {
   cartProductService,
   cartService,
   categoryService,
+  orderService,
   productService,
   wishlistService,
 } from './services.ioc';
@@ -12,6 +13,8 @@ import { CartProductController } from '../../controllers/cart-product.controller
 import { ProductController } from '../../controllers/product.controller';
 import { CategoryController } from '../../controllers/category.controller';
 import { WishlistController } from '../../controllers/wishlist.controller';
+import exp from 'node:constants';
+import { OrderController } from '../../controllers/order.controller';
 
 export const authController: AuthController = new AuthController(authService);
 export const cartController: CartController = new CartController(cartService);
@@ -28,4 +31,8 @@ export const productController: ProductController = new ProductController(
 
 export const wishlistController: WishlistController = new WishlistController(
   wishlistService,
+);
+
+export const orderController: OrderController = new OrderController(
+  orderService,
 );
