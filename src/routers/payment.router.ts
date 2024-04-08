@@ -3,6 +3,7 @@ import { isAuthMiddleware } from '../utils/middlewares/is-auth.middleware';
 import { paymentController } from '../utils/ioc/controllers.ioc';
 export const router: Router = Router();
 
+// TODO: handle only pending orders
 router
   .route('/:orderId')
   .post(isAuthMiddleware, paymentController.create.bind(paymentController));
