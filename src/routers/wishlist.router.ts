@@ -1,13 +1,8 @@
 import { Router } from 'express';
 import { isAuthMiddleware } from '../utils/middlewares/is-auth.middleware';
-import { WishlistController } from '../controllers/wishlist.controller';
-import { WishlistService } from '../services/wishlist.service';
+import { wishlistController } from '../utils/ioc/controllers.ioc';
 
 export const router: Router = Router();
-
-const wishlistController: WishlistController = new WishlistController(
-  new WishlistService(),
-);
 
 router.use(isAuthMiddleware);
 

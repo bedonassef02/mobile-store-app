@@ -6,24 +6,29 @@ import { ProductService } from '../../services/product.service';
 import { ImageService } from '../../services/image.service';
 import { eventEmitter } from './index';
 
-const orderItemService: OrderItemService = new OrderItemService(new ProductService(new ImageService()));
+const orderItemService: OrderItemService = new OrderItemService(
+  new ProductService(new ImageService()),
+);
 const cartService: CartService = new CartService(new CartProductService());
 
 export type OrderListenerDto = {
-  orderId: number,
-  cartItems: CreateCartProductDto[],
-  cartId: number
-}
+  orderId: number;
+  cartItems: CreateCartProductDto[];
+  cartId: number;
+};
 eventEmitter.on('order.created', async (order: OrderListenerDto) => {
   await createOrderListener(order);
 });
-export const createOrderListener = async (order:OrderListenerDto) => {
+export const createOrderListener = async (order: OrderListenerDto) => {
   await createOrderItems(order.orderId, order.cartItems);
   await truncateCart(order.cartId);
 };
 
-const createOrderItems = async (orderId: number, cartItems: CreateCartProductDto[]): Promise<void> => {
-  const productIds: number[] = cartItems.map(item => item.productId);
+const createOrderItems = async (
+  orderId: number,
+  cartItems: CreateCartProductDto[],
+): Promise<void> => {
+  const productIds: number[] = cartItems.map((item) => item.productId);
   await orderItemService.create(orderId, productIds);
 };
 

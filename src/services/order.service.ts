@@ -8,15 +8,14 @@ import { OrderListenerDto } from '../utils/events/create-order.listener';
 import { calculatePrice } from '../utils/helpers/calculate-order-price.helper';
 
 export class OrderService {
-
-  constructor(private cartProductService: CartProductService) {
-  }
+  constructor(private cartProductService: CartProductService) {}
 
   async create(userId: number, cartId: number): Promise<OrderInstance> {
-    const cartItems: CreateCartProductDto[] = await this.cartProductService.findAll(cartId);
+    const cartItems: CreateCartProductDto[] =
+      await this.cartProductService.findAll(cartId);
     const totalPrice: number = await calculatePrice(cartItems);
     const order: OrderInstance = await this.createOrder(userId, totalPrice);
-    const orderDto:OrderListenerDto = {orderId: order.id, cartId, cartItems}
+    const orderDto: OrderListenerDto = { orderId: order.id, cartId, cartItems };
     eventEmitter.emit('order.created', orderDto);
     return order;
   }

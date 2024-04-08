@@ -6,7 +6,7 @@ const cartService: CartService = new CartService(new CartProductService());
 
 eventEmitter.on('user.created', async (userId) => {
   await signUpListener(userId);
-})
+});
 export const signUpListener = async (userId: number) => {
   await cartService.create(userId);
 };

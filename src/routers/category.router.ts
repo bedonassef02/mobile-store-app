@@ -1,16 +1,11 @@
 import { Router } from 'express';
-import { CategoryService } from '../services/category.service';
-import { CategoryController } from '../controllers/category.controller';
 import { createCategoryPipe } from '../utils/pipes/categories/create-category.pipe';
 import { deleteCategoryPipe } from '../utils/pipes/categories/delete-category.pipe';
 import { updateCategoryPipe } from '../utils/pipes/categories/update-category.pipe';
 import { isAuthMiddleware } from '../utils/middlewares/is-auth.middleware';
+import { categoryController } from '../utils/ioc/controllers.ioc';
 
 export const router: Router = Router();
-
-const categoryController: CategoryController = new CategoryController(
-  new CategoryService(),
-);
 
 router
   .route('/')

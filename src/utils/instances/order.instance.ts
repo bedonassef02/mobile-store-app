@@ -3,4 +3,4 @@ export type OrderInstance = {
   userId: number;
   status: string;
   totalPrice: number;
-}
+};
