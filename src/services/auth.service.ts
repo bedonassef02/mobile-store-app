@@ -20,7 +20,7 @@ export class AuthService {
   async signUp(signUpDto: SignUpDto): Promise<AuthDto> {
     signUpDto.password = await this.hashPassword(signUpDto.password);
     const user: UserDto = await this.userService.create(signUpDto);
-    signUpListener(user.id);
+    await signUpListener(user.id);
     return this.generateResponse(user);
   }
 

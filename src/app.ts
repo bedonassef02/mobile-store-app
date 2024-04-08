@@ -6,6 +6,7 @@ import { router as authRouter } from './routers/auth.router';
 import { router as categoryRouter } from './routers/category.router';
 import { router as productRouter } from './routers/product.router';
 import { router as wishlistRouter } from './routers/wishlist.router';
+import { router as cartRouter } from './routers/cart.router';
 
 export const setupExpressApp = () => {
   const app: Express = express();
@@ -18,6 +19,7 @@ export const setupExpressApp = () => {
   app.use('/categories', categoryRouter);
   app.use('/products', productRouter);
   app.use('/wishlist', wishlistRouter);
+  app.use('/cart', cartRouter);
 
   app.use(notFoundException);
 

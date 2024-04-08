@@ -22,8 +22,8 @@ export class WishlistController {
 
   async findAll(req: any, res: Response): Promise<void> {
     const userId: number = req.user.id;
-    const wishlists: WishlistDto[] = await this.wishlistService.findAll(userId);
-    res.status(200).json(wishlists);
+    const wishlist: WishlistDto[] = await this.wishlistService.findAll(userId);
+    res.status(200).json(wishlist);
   }
 
   async findOne(req: any, res: Response): Promise<void> {
