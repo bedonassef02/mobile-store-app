@@ -1,5 +1,5 @@
 import { OrderService } from '../services/order.service';
-import { Request, Response } from 'express';
+import { Response } from 'express';
 import { OrderInstance } from '../utils/instances/order.instance';
 
 export class OrderController {

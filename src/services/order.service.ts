@@ -41,4 +41,10 @@ export class OrderService {
   async findOne(id: number): Promise<any> {
     return await Order.findByPk(id);
   }
+
+  async updateStatus(id: number, status: string): Promise<any> {
+    const order: any = await Order.findByPk(id);
+    order.status = status;
+    order.save();
+  }
 }

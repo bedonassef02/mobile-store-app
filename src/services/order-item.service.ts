@@ -14,7 +14,10 @@ export class OrderItemService {
         return { orderId, price: product.price, productId };
       }),
     );
-
     await OrderItem.bulkCreate(orderItems);
+  }
+
+  async findAll(orderId: number): Promise<any> {
+    return await OrderItem.findAll({ where: { orderId } });
   }
 }

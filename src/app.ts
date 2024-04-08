@@ -8,6 +8,8 @@ import { router as productRouter } from './routers/product.router';
 import { router as wishlistRouter } from './routers/wishlist.router';
 import { router as cartRouter } from './routers/cart.router';
 import { router as orderRouter } from './routers/order.router';
+import { router as paymentRouter } from './routers/payment.router';
+import path from 'node:path';
 
 export const setupExpressApp = () => {
   const app: Express = express();
@@ -16,12 +18,16 @@ export const setupExpressApp = () => {
 
   app.use(morgan('dev'));
 
+  const parentDir = path.resolve(__dirname, '..');
+  app.use(express.static(path.join(parentDir, 'public')));
+
   app.use('/auth', authRouter);
   app.use('/categories', categoryRouter);
   app.use('/products', productRouter);
   app.use('/wishlist', wishlistRouter);
   app.use('/cart', cartRouter);
   app.use('/order', orderRouter);
+  app.use('/payment', paymentRouter);
 
   app.use(notFoundException);
 

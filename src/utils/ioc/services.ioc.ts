@@ -9,6 +9,7 @@ import { CartProductService } from '../../services/cart-product.service';
 import { OrderService } from '../../services/order.service';
 import { OrderItemService } from '../../services/order-item.service';
 import { WishlistService } from '../../services/wishlist.service';
+import { PaymentService } from '../../services/payment.service';
 
 export const imageService: ImageService = new ImageService();
 export const userService: UserService = new UserService();
@@ -32,3 +33,5 @@ export const orderService: OrderService = new OrderService(
 export const orderItemService: OrderItemService = new OrderItemService(
   productService,
 );
+
+export const paymentService: PaymentService = new PaymentService();
