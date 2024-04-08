@@ -17,4 +17,8 @@ export class CartProductService {
   async delete(cartId: number, productId: number): Promise<void> {
     await CartProduct.destroy({ where: { cartId, productId } });
   }
+
+  async deleteByCartId(cartId: number): Promise<void> {
+    await CartProduct.destroy({ where: { cartId } });
+  }
 }

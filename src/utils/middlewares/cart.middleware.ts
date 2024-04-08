@@ -1,8 +1,9 @@
 import { NextFunction, Response } from 'express';
 import { CartService } from '../../services/cart.service';
 import { CartInstance } from '../instances/cart.instance';
+import { CartProductService } from '../../services/cart-product.service';
 
-const cartService: CartService = new CartService();
+const cartService: CartService = new CartService(new CartProductService());
 export const cartMiddleware = async (
   req: any,
   res: Response,
