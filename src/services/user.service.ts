@@ -1,5 +1,6 @@
 import { SignUpDto } from '../utils/dtos/auth/sign-up.dto';
 import { User } from '../models/user.model';
+import { eventEmitter } from '../utils/events';
 
 export class UserService {
   async findOne(id: number): Promise<any> {
@@ -7,7 +8,9 @@ export class UserService {
   }
 
   async create(signUpDto: SignUpDto): Promise<any> {
-    return await User.create(signUpDto);
+    const user: any = await User.create(signUpDto);
+    eventEmitter.emit('user.created', user.id);
+    return user;
   }
 
   async findByEmail(email: string): Promise<any> {
