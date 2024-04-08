@@ -1,5 +1,6 @@
 import { Sequelize } from 'sequelize';
 import { databaseConfig } from '../env-var';
+
 export const sequelize: Sequelize = new Sequelize(
   databaseConfig.name,
   databaseConfig.username,

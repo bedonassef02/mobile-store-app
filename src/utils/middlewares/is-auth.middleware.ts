@@ -1,7 +1,5 @@
 import { NextFunction, Response } from 'express';
-import { TokenService } from '../../services/token.service';
-
-const tokenService: TokenService = new TokenService();
+import { tokenService } from '../ioc/services.ioc';
 export const isAuthMiddleware = (
   req: any,
   res: Response,

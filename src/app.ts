@@ -10,13 +10,28 @@ import { router as cartRouter } from './routers/cart.router';
 import { router as orderRouter } from './routers/order.router';
 import { router as paymentRouter } from './routers/payment.router';
 import path from 'node:path';
+import session from 'express-session';
+import passport from 'passport';
 
+const SESSION_SECRET: string = process.env.SESSION_SECRET || '';
 export const setupExpressApp = () => {
   const app: Express = express();
 
+  app.use(
+    session({
+      secret: SESSION_SECRET,
+      resave: true,
+      saveUninitialized: true,
+    }),
+  );
+
   app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
 
   app.use(morgan('dev'));
+
+  app.use(passport.initialize());
+  app.use(passport.session());
 
   const parentDir = path.resolve(__dirname, '..');
   app.use(express.static(path.join(parentDir, 'public')));

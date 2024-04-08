@@ -20,7 +20,6 @@ export const User = sequelize.define('User', {
   },
   password: {
     type: DataTypes.STRING(64),
-    allowNull: false,
   },
   phone: {
     type: DataTypes.STRING(16),
@@ -33,6 +32,12 @@ export const User = sequelize.define('User', {
     type: DataTypes.ENUM(...Object.values(UserRole)),
     allowNull: false,
     defaultValue: UserRole.USER,
+  },
+  provider: {
+    type: DataTypes.STRING(16),
+  },
+  providerId: {
+    type: DataTypes.STRING(32),
   },
 });
 

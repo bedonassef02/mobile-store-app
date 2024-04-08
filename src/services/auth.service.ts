@@ -24,6 +24,15 @@ export class AuthService {
     return this.generateResponse(user);
   }
 
+  async findOrCreate(profile: any): Promise<AuthDto> {
+    const email: string = profile?.emails[0].value;
+    let user: UserDto = await this.userService.findByEmail(email);
+    if (!user) {
+      user = await this.userService.createOAuth(profile);
+    }
+    return this.generateResponse(user);
+  }
+
   async signIn(signInDto: SignInDto): Promise<AuthDto | null> {
     const user: UserDto = await this.userService.findByEmail(signInDto.email);
     if (

@@ -1,7 +1,4 @@
-import { CartService } from '../../services/cart.service';
-import { CartProductService } from '../../services/cart-product.service';
-
-const cartService: CartService = new CartService(new CartProductService());
+import { cartService } from '../ioc/services.ioc';
 
 export const signUpListener = async (userId: number) => {
   await cartService.create(userId);

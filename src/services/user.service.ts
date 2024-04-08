@@ -13,6 +13,13 @@ export class UserService {
     return user;
   }
 
+  async createOAuth(profile: any): Promise<any> {
+    const { email, name, sub } = profile._json;
+    const provider: string = 'google';
+
+    return User.create({ email, name, provider, providerId: sub });
+  }
+
   async findByEmail(email: string): Promise<any> {
     return await User.findOne({ where: { email } });
   }

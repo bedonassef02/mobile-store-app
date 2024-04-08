@@ -1,7 +1,5 @@
-import { UserService } from '../../../services/user.service';
 import { body } from 'express-validator';
-
-const userService = new UserService();
+import { userService } from '../../ioc/services.ioc';
 
 // Validate email format and normalize it
 export const validateEmailFormat = body('email')
