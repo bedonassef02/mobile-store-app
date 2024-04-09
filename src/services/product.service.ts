@@ -8,11 +8,11 @@ export class ProductService {
   constructor(private imageService: ImageService) {}
 
   async findAll(): Promise<any> {
-    const cahchedProducts: string | null = await redis.get('products');
-    if (cahchedProducts) {
-      return JSON.parse(cahchedProducts);
+    const cachedProducts: string | null = await redis.get('products');
+    if (cachedProducts) {
+      return JSON.parse(cachedProducts);
     }
-    const products =  await Product.findAll();
+    const products = await Product.findAll();
     await redis.set('products', JSON.stringify(products));
     return products;
   }

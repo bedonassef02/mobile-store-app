@@ -6,12 +6,12 @@ import { CategoryInstance } from '../utils/instances/category.instance';
 
 export class CategoryService {
   async findAll(): Promise<any> {
-    const cachedCategories:string|null = await redis.get('categories');
-    if(cachedCategories){
+    const cachedCategories: string | null = await redis.get('categories');
+    if (cachedCategories) {
       return JSON.parse(cachedCategories);
     }
 
-    const categories:any = await Category.findAll();
+    const categories: any = await Category.findAll();
     await redis.set('categories', JSON.stringify(categories));
     return categories;
   }
@@ -30,7 +30,7 @@ export class CategoryService {
   }
 
   async update(id: number, updateCategoryDto: UpdateCategoryDto): Promise<any> {
-    await Category.update(updateCategoryDto, { where: { id } });    
+    await Category.update(updateCategoryDto, { where: { id } });
     await this.updateCache();
     return this.findByPk(id);
   }

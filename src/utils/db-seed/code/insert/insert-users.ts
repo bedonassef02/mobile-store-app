@@ -1,5 +1,5 @@
 import { readFile } from '../helper';
-import { authService, userService } from '../../../ioc/services.ioc';
+import { authService } from '../../../ioc/services.ioc';
 import { SignUpDto } from '../../../dtos/auth/sign-up.dto';
 
 export const insertUsers = async () => {
