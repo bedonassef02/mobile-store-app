@@ -28,3 +28,9 @@ services:
       MYSQL_ROOT_PASSWORD: secret
     ports:
       - "8080:80"
+  redis:
+    image: redis
+    ports:
+      - '6379:6379'
+    logging:
+      driver: none

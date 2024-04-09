@@ -1,3 +1,4 @@
+import { redis } from '../config/redis.config';
 import { Category } from '../models/category.model';
 import { CreateCategoryDto } from '../utils/dtos/category/create-category.dto';
 import { UpdateCategoryDto } from '../utils/dtos/category/update-category.dto';
@@ -5,10 +6,18 @@ import { CategoryInstance } from '../utils/instances/category.instance';
 
 export class CategoryService {
   async findAll(): Promise<any> {
-    return await Category.findAll();
+    const cachedCategories:string|null = await redis.get('categories');
+    if(cachedCategories){
+      return JSON.parse(cachedCategories);
+    }
+
+    const categories:any = await Category.findAll();
+    await redis.set('categories', JSON.stringify(categories));
+    return categories;
   }
 
   async create(createCategoryDto: CreateCategoryDto): Promise<any> {
+    await this.updateCache();
     return await Category.create(createCategoryDto);
   }
 
@@ -21,7 +30,8 @@ export class CategoryService {
   }
 
   async update(id: number, updateCategoryDto: UpdateCategoryDto): Promise<any> {
-    await Category.update(updateCategoryDto, { where: { id } });
+    await Category.update(updateCategoryDto, { where: { id } });    
+    await this.updateCache();
     return this.findByPk(id);
   }
 
@@ -35,9 +45,14 @@ export class CategoryService {
 
   async delete(id: number): Promise<void> {
     await Category.destroy({ where: { id } });
+    await this.updateCache();
   }
 
   async isParent(id: number): Promise<boolean> {
     return !!(await Category.findOne({ where: { parentId: id } }));
+  }
+
+  private async updateCache(): Promise<void> {
+    await redis.del('categories');
   }
 }
