@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../config/database/sequelize.config';
-import { OrderItem } from './order-item.model';
 import { OrderStatus } from '../utils/types/order-status.type';
+import { User } from './user.model';
 
 export const Order = sequelize.define('Order', {
   id: {
@@ -13,7 +13,7 @@ export const Order = sequelize.define('Order', {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: 'users.json', // This should match the table name of the User model
+      model: 'users', // This should match the table name of the User model
       key: 'id',
     },
   },
@@ -39,6 +39,6 @@ export const Order = sequelize.define('Order', {
   },
 });
 
-// Define the relationship between Order and OrderItem
-Order.hasMany(OrderItem, { foreignKey: 'orderId' });
-OrderItem.belongsTo(Order, { foreignKey: 'orderId' });
+// Define the relationship between User and Order
+User.hasMany(Order, { foreignKey: 'userId' });
+Order.belongsTo(User, { foreignKey: 'userId' });

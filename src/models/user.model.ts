@@ -1,7 +1,6 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../config/database/sequelize.config';
 import { UserRole } from '../utils/types/user-role.type';
-import { Order } from './order.model';
 
 export const User = sequelize.define('User', {
   id: {
@@ -40,7 +39,3 @@ export const User = sequelize.define('User', {
     type: DataTypes.STRING(32),
   },
 });
-
-// Define the relationship between User and Order
-User.hasMany(Order, { foreignKey: 'userId' });
-Order.belongsTo(User, { foreignKey: 'userId' });

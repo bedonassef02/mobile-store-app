@@ -1,6 +1,8 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../config/database/sequelize.config';
 import { Product } from './product.model';
+import { User } from './user.model';
+
 export const Cart = sequelize.define('Cart', {
   id: {
     type: DataTypes.INTEGER,
@@ -12,7 +14,7 @@ export const Cart = sequelize.define('Cart', {
     allowNull: false,
     // Assuming you have a User model and each cart is associated with a user
     references: {
-      model: 'users.json', // This should match the table name of the User model
+      model: 'users', // This should match the table name of the User model
       key: 'id',
     },
   },
@@ -32,3 +34,8 @@ Product.belongsToMany(Cart, {
   otherKey: 'cartId',
   as: 'carts', // Alias for the association
 });
+
+// Define the relationship between Cart and User
+Cart.belongsTo(User, { foreignKey: 'userId' });
+
+User.hasOne(Cart, { foreignKey: 'userId' });

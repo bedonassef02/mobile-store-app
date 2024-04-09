@@ -4,16 +4,16 @@ import {
 } from '../utils/types/database-config.type';
 
 function getDatabaseConfig(): DatabaseConfig {
-  const dialect: SequelizeDialect = (process.env.DATABASE_DIALECT ||
+  const dialect: SequelizeDialect = (process.env.MYSQL_DIALECT ||
     'mysql') as SequelizeDialect;
 
   return {
-    name: process.env.DATABASE_NAME || 'mobile-store',
-    username: process.env.DATABASE_USERNAME || 'root',
-    password: process.env.DATABASE_PASSWORD || '',
-    host: process.env.DATABASE_HOST || 'localhost',
+    name: process.env.DB_NAME || 'mobile-store',
+    username: process.env.DB_USER || 'root',
+    password: process.env.DB_PASS || '',
+    host: process.env.DB_HOST || 'localhost',
     dialect,
-    logging: process.env.DATABASE_LOGGING === 'true',
+    logging: process.env.MYSQL_LOGGING === 'true',
   };
 }
 

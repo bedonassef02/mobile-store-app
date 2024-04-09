@@ -13,7 +13,7 @@ export const Wishlist = sequelize.define('Wishlist', {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: 'users.json', // This should match the table name of the User model
+      model: 'users', // This should match the table name of the User model
       key: 'id',
     },
   },
