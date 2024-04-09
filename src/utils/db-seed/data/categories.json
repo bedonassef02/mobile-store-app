@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "Smartphones",
+    "slug": "smartphones",
+    "parentId": null
+  },
+  {
+    "id": 2,
+    "name": "Android Phones",
+    "slug": "android-phones",
+    "parentId": 1
+  },
+  {
+    "id": 3,
+    "name": "iOS Phones",
+    "slug": "ios-phones",
+    "parentId": 1
+  },
+  {
+    "id": 4,
+    "name": "Phone Accessories",
+    "slug": "phone-accessories",
+    "parentId": null
+  },
+  {
+    "id": 5,
+    "name": "Phone Cases",
+    "slug": "phone-cases",
+    "parentId": 4
+  },
+  {
+    "id": 6,
+    "name": "Screen Protectors",
+    "slug": "screen-protectors",
+    "parentId": 4
+  },
+  {
+    "id": 7,
+    "name": "Chargers & Cables",
+    "slug": "chargers-cables",
+    "parentId": 4
+  },
+  {
+    "id": 8,
+    "name": "Bluetooth Headsets",
+    "slug": "bluetooth-headsets",
+    "parentId": 4
+  },
+  {
+    "id": 9,
+    "name": "Power Banks",
+    "slug": "power-banks",
+    "parentId": 4
+  },
+  {
+    "id": 10,
+    "name": "Wireless Chargers",
+    "slug": "wireless-chargers",
+    "parentId": 4
+  }
+]

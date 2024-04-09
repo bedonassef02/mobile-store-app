@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "path": "iphone_13_pro_1.jpg",
+    "productId": 1
+  },
+  {
+    "id": 2,
+    "path": "iphone_13_pro_2.jpg",
+    "productId": 1
+  },
+  {
+    "id": 3,
+    "path": "iphone_13_1.jpg",
+    "productId": 2
+  },
+  {
+    "id": 4,
+    "path": "iphone_13_2.jpg",
+    "productId": 2
+  },
+  {
+    "id": 5,
+    "path": "iphone_12_pro_max_1.jpg",
+    "productId": 3
+  },
+  {
+    "id": 6,
+    "path": "iphone_12_pro_max_2.jpg",
+    "productId": 3
+  },
+  {
+    "id": 7,
+    "path": "iphone_12_mini_1.jpg",
+    "productId": 4
+  },
+  {
+    "id": 8,
+    "path": "iphone_12_mini_2.jpg",
+    "productId": 4
+  },
+  {
+    "id": 9,
+    "path": "iphone_se_2020_1.jpg",
+    "productId": 5
+  },
+  {
+    "id": 10,
+    "path": "iphone_se_2020_2.jpg",
+    "productId": 5
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "orderId": 1,
+    "productId": 1,
+    "price": 599.99
+  },
+  {
+    "id": 2,
+    "orderId": 1,
+    "productId": 2,
+    "price": 399.99
+  },
+  {
+    "id": 3,
+    "orderId": 2,
+    "productId": 3,
+    "price": 899.99
+  },
+  {
+    "id": 4,
+    "orderId": 3,
+    "productId": 4,
+    "price": 349.99
+  },
+  {
+    "id": 5,
+    "orderId": 4,
+    "productId": 5,
+    "price": 1299.99
+  },
+  {
+    "id": 6,
+    "orderId": 5,
+    "productId": 6,
+    "price": 799.99
+  },
+  {
+    "id": 7,
+    "orderId": 6,
+    "productId": 7,
+    "price": 499.99
+  },
+  {
+    "id": 8,
+    "orderId": 7,
+    "productId": 8,
+    "price": 699.99
+  },
+  {
+    "id": 9,
+    "orderId": 8,
+    "productId": 9,
+    "price": 1099.99
+  },
+  {
+    "id": 10,
+    "orderId": 9,
+    "productId": 10,
+    "price": 999.99
+  }
+]

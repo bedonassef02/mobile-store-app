@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "name": "iPhone 13 Pro",
+    "description": "The latest iPhone model with advanced features and powerful performance.",
+    "coverImage": "iphone_13_pro.jpg",
+    "price": 1099.99,
+    "categoryId": 3
+  },
+  {
+    "id": 2,
+    "name": "iPhone 13",
+    "description": "A powerful and sleek iPhone with a stunning display and advanced camera system.",
+    "coverImage": "iphone_13.jpg",
+    "price": 799.99,
+    "categoryId": 3
+  },
+  {
+    "id": 3,
+    "name": "iPhone 12 Pro Max",
+    "description": "The largest and most advanced iPhone model with 5G capability and a Pro camera system.",
+    "coverImage": "iphone_12_pro_max.jpg",
+    "price": 1099.99,
+    "categoryId": 3
+  },
+  {
+    "id": 4,
+    "name": "iPhone 12 Mini",
+    "description": "A compact yet powerful iPhone with a smaller form factor and all the features of the iPhone 12 series.",
+    "coverImage": "iphone_12_mini.jpg",
+    "price": 699.99,
+    "categoryId": 3
+  },
+  {
+    "id": 5,
+    "name": "iPhone SE (2020)",
+    "description": "A budget-friendly iPhone with the performance of the iPhone 11 chipset and a compact design.",
+    "coverImage": "iphone_se_2020.jpg",
+    "price": 399.99,
+    "categoryId": 3
+  },
+  {
+    "id": 6,
+    "name": "iPhone 11",
+    "description": "A popular iPhone model known for its excellent camera quality and long-lasting battery life.",
+    "coverImage": "iphone_11.jpg",
+    "price": 699.99,
+    "categoryId": 3
+  },
+  {
+    "id": 7,
+    "name": "iPhone XS",
+    "description": "An older iPhone model featuring a Super Retina OLED display and Face ID technology.",
+    "coverImage": "iphone_xs.jpg",
+    "price": 999.99,
+    "categoryId": 3
+  },
+  {
+    "id": 8,
+    "name": "iPhone XR",
+    "description": "A colorful and affordable iPhone with a Liquid Retina display and Face ID.",
+    "coverImage": "iphone_xr.jpg",
+    "price": 599.99,
+    "categoryId": 3
+  },
+  {
+    "id": 9,
+    "name": "iPhone X",
+    "description": "A revolutionary iPhone with an edge-to-edge Super Retina display and Face ID.",
+    "coverImage": "iphone_x.jpg",
+    "price": 899.99,
+    "categoryId": 3
+  },
+  {
+    "id": 10,
+    "name": "iPhone 8 Plus",
+    "description": "A powerful iPhone with a classic design, featuring a dual-camera system and wireless charging.",
+    "coverImage": "iphone_8_plus.jpg",
+    "price": 699.99,
+    "categoryId": 3
+  }
+]

@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "email": "john.doe@example.com",
+    "password": "hashed_password_1",
+    "phone": "+1234567890",
+    "image": "profile_picture_1.jpg",
+    "role": "user",
+    "provider": "local",
+    "providerId": "local123"
+  },
+  {
+    "id": 2,
+    "name": "Jane Smith",
+    "email": "jane.smith@example.com",
+    "password": "hashed_password_2",
+    "phone": "+1987654321",
+    "image": "profile_picture_2.jpg",
+    "role": "user",
+    "provider": "local",
+    "providerId": "local456"
+  },
+  {
+    "id": 3,
+    "name": "Alice Johnson",
+    "email": "alice.johnson@example.com",
+    "password": "hashed_password_3",
+    "phone": "+1122334455",
+    "image": "profile_picture_3.jpg",
+    "role": "user",
+    "provider": "local",
+    "providerId": "local789"
+  },
+  {
+    "id": 4,
+    "name": "Bob Brown",
+    "email": "bob.brown@example.com",
+    "password": "hashed_password_4",
+    "phone": "+1555666777",
+    "image": "profile_picture_4.jpg",
+    "role": "user",
+    "provider": "local",
+    "providerId": "local1011"
+  },
+  {
+    "id": 5,
+    "name": "Emma Davis",
+    "email": "emma.davis@example.com",
+    "password": "hashed_password_5",
+    "phone": "+1444333222",
+    "image": "profile_picture_5.jpg",
+    "role": "user",
+    "provider": "local",
+    "providerId": "local1213"
+  },
+  {
+    "id": 6,
+    "name": "Michael Wilson",
+    "email": "michael.wilson@example.com",
+    "password": "hashed_password_6",
+    "phone": "+1666777888",
+    "image": "profile_picture_6.jpg",
+    "role": "user",
+    "provider": "local",
+    "providerId": "local1415"
+  },
+  {
+    "id": 7,
+    "name": "Olivia Martinez",
+    "email": "olivia.martinez@example.com",
+    "password": "hashed_password_7",
+    "phone": "+1777888999",
+    "image": "profile_picture_7.jpg",
+    "role": "user",
+    "provider": "local",
+    "providerId": "local1617"
+  },
+  {
+    "id": 8,
+    "name": "William Taylor",
+    "email": "william.taylor@example.com",
+    "password": "hashed_password_8",
+    "phone": "+1888999000",
+    "image": "profile_picture_8.jpg",
+    "role": "user",
+    "provider": "local",
+    "providerId": "local1819"
+  },
+  {
+    "id": 9,
+    "name": "Sophia Anderson",
+    "email": "sophia.anderson@example.com",
+    "password": "hashed_password_9",
+    "phone": "+1999000111",
+    "image": "profile_picture_9.jpg",
+    "role": "user",
+    "provider": "local",
+    "providerId": "local2021"
+  },
+  {
+    "id": 10,
+    "name": "James Lee",
+    "email": "james.lee@example.com",
+    "password": "hashed_password_10",
+    "phone": "+1222333444",
+    "image": "profile_picture_10.jpg",
+    "role": "user",
+    "provider": "local",
+    "providerId": "local2223"
+  }
+]
