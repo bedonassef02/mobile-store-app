@@ -44,7 +44,7 @@ export const setupExpressApp = () => {
   app.use('/products', productRouter);
   app.use('/wishlist', wishlistRouter);
   app.use('/cart', cartRouter);
-  app.use('/order', orderRouter);
+  app.use('/orders', orderRouter);
   app.use('/payment', paymentRouter);
 
   app.use(notFoundException);

@@ -4,6 +4,7 @@ import {
   cartProductService,
   cartService,
   categoryService,
+  orderItemService,
   orderService,
   paymentService,
   productService,
@@ -41,4 +42,5 @@ export const paymentController: PaymentController = new PaymentController(
 
 export const orderController: OrderController = new OrderController(
   orderService,
+  orderItemService,
 );
