@@ -1,12 +1,8 @@
 import { body, param } from 'express-validator';
 import { handleValidationErrorsMiddleware } from '../../error-handling/validation-error';
-import { ProductService } from '../../../services/product.service';
 import { ProductInstance } from '../../instances/product.instance';
-import { ImageService } from '../../../services/image.service';
-import { CartProductService } from '../../../services/cart-product.service';
+import { cartProductService, productService } from '../../ioc/services.ioc';
 
-const productService: ProductService = new ProductService(new ImageService());
-const cartProductService: CartProductService = new CartProductService();
 export const createCartProductPipe = [
   body('productId')
     .notEmpty()

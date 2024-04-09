@@ -12,10 +12,13 @@ import { router as paymentRouter } from './routers/payment.router';
 import path from 'node:path';
 import session from 'express-session';
 import passport from 'passport';
+import { seedDatabase } from './utils/db-seed/code';
 
 const SESSION_SECRET: string = process.env.SESSION_SECRET || '';
 export const setupExpressApp = () => {
   const app: Express = express();
+
+  seedDatabase();
 
   app.use(
     session({

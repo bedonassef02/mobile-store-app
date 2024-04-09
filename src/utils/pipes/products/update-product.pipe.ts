@@ -1,8 +1,7 @@
 import { body } from 'express-validator';
 import { handleValidationErrorsMiddleware } from '../../error-handling/validation-error';
-import { CategoryService } from '../../../services/category.service';
 import { CategoryInstance } from '../../instances/category.instance';
-const categoryService: CategoryService = new CategoryService();
+import { categoryService } from '../../ioc/services.ioc';
 
 export const updateProductPipe = [
   body('name')

@@ -1,10 +1,9 @@
-import { categoryService } from '../../ioc/services.ioc';
-import { CreateCategoryDto } from '../../dtos/category/create-category.dto';
-import {readFile } from './common'
+import { categoryService } from '../../../ioc/services.ioc';
+import { CreateCategoryDto } from '../../../dtos/category/create-category.dto';
+import { readFile } from '../helper';
 
 export const insertCategories = async () => {
   try {
-
     const categoriesEntries: CreateCategoryDto[] = readFile('categories.json');
 
     for (const category of categoriesEntries) {

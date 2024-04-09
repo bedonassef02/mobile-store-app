@@ -1,9 +1,8 @@
 import { param } from 'express-validator';
 import { handleValidationErrorsMiddleware } from '../../error-handling/validation-error';
-import { CategoryService } from '../../../services/category.service';
 import { CategoryInstance } from '../../instances/category.instance';
+import { categoryService } from '../../ioc/services.ioc';
 
-const categoryService: CategoryService = new CategoryService();
 export const deleteCategoryPipe = [
   param('id')
     .isNumeric()

@@ -26,7 +26,7 @@ export class AuthService {
 
   async findOrCreate(profile: any): Promise<AuthDto> {
     const email: string = profile?.emails[0].value;
-    let user: UserDto = await this.userService.findByEmail(email);
+    let user: UserDto = await this.userService.findByEmail(email, 'google');
     if (!user) {
       user = await this.userService.createOAuth(profile);
     }

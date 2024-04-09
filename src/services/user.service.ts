@@ -20,7 +20,7 @@ export class UserService {
     return User.create({ email, name, provider, providerId: sub });
   }
 
-  async findByEmail(email: string): Promise<any> {
-    return await User.findOne({ where: { email } });
+  async findByEmail(email: string, provider: string = ''): Promise<any> {
+    return await User.findOne({ where: { email, provider } });
   }
 }

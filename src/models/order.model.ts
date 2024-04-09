@@ -13,7 +13,7 @@ export const Order = sequelize.define('Order', {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: 'users', // This should match the table name of the User model
+      model: 'users.json', // This should match the table name of the User model
       key: 'id',
     },
   },
@@ -21,7 +21,7 @@ export const Order = sequelize.define('Order', {
     type: DataTypes.ENUM,
     values: Object.values(OrderStatus),
     allowNull: false,
-    defaultValue: OrderStatus.PENDING, // Default status for new orders
+    defaultValue: OrderStatus.PENDING, // Default status for new orders.json
   },
   totalPrice: {
     type: DataTypes.FLOAT,

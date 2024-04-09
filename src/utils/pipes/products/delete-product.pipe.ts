@@ -1,10 +1,8 @@
 import { param } from 'express-validator';
 import { handleValidationErrorsMiddleware } from '../../error-handling/validation-error';
-import { ProductService } from '../../../services/product.service';
 import { ProductInstance } from '../../instances/product.instance';
-import { ImageService } from '../../../services/image.service';
+import { productService } from '../../ioc/services.ioc';
 
-const productService: ProductService = new ProductService(new ImageService());
 export const deleteProductPipe = [
   param('id')
     .isNumeric()

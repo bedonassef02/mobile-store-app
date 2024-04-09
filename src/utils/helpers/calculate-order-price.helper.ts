@@ -1,9 +1,7 @@
 import { ProductInstance } from '../instances/product.instance';
 import { CreateCartProductDto } from '../dtos/cart/create-cart-product.dto';
-import { ProductService } from '../../services/product.service';
-import { ImageService } from '../../services/image.service';
+import { productService } from '../ioc/services.ioc';
 
-const productService: ProductService = new ProductService(new ImageService());
 export const calculatePrice = async (
   cartItems: CreateCartProductDto[],
 ): Promise<number> => {

@@ -1,14 +1,5 @@
-import { CartService } from '../../services/cart.service';
-import { CartProductService } from '../../services/cart-product.service';
 import { CreateCartProductDto } from '../dtos/cart/create-cart-product.dto';
-import { OrderItemService } from '../../services/order-item.service';
-import { ProductService } from '../../services/product.service';
-import { ImageService } from '../../services/image.service';
-
-const orderItemService: OrderItemService = new OrderItemService(
-  new ProductService(new ImageService()),
-);
-const cartService: CartService = new CartService(new CartProductService());
+import { cartService, orderItemService } from '../ioc/services.ioc';
 
 export type OrderListenerDto = {
   orderId: number;
