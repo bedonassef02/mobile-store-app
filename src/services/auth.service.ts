@@ -8,18 +8,21 @@ import { UserDto } from '../utils/dtos/users/user.dto';
 import { AuthDto } from '../utils/dtos/auth/auth.dto';
 import { signUpListener } from '../utils/events/sign-up.listener';
 import { PasswordService } from './password.service';
+import { MailService } from './mail.service';
 
 export class AuthService {
   constructor(
     private readonly userService: UserService,
     private readonly tokenService: TokenService,
     private readonly passwordService: PasswordService,
+    private readonly mailService: MailService,
   ) {}
 
   async signUp(signUpDto: SignUpDto): Promise<AuthDto> {
     signUpDto.password = await this.passwordService.hash(signUpDto.password);
     const user: UserDto = await this.userService.create(signUpDto);
     await signUpListener(user.id);
+    await this.mailService.welcome(signUpDto.email);
     return this.generateResponse(user);
   }
 
@@ -41,19 +44,18 @@ export class AuthService {
       user &&
       (await this.passwordService.compare(signInDto.password, user.password))
     ) {
+      await this.mailService.signIn(user.email);
       return this.generateResponse(user);
     }
     return null;
   }
 
-  async changePassword(
-    userId: number,
-    password: string,
-  ): Promise<AuthDto> {
+  async changePassword(userId: number, password: string): Promise<AuthDto> {
     const hashedPassword = await this.passwordService.hash(password);
     const user: UserDto = await this.userService.update(userId, {
       password: hashedPassword,
     });
+    await this.mailService.passwordChanged(user.email);
     return this.generateResponse(user);
   }
 

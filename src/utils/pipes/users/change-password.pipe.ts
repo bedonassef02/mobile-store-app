@@ -10,7 +10,7 @@ export const changePasswordPipe = [
     .custom(async (password, { req }) => {
       const userId = req.user.id;
       const user: UserDto = await userService.findOne(userId);
-      if (!await passwordService.compare(password, user.password)) {
+      if (!(await passwordService.compare(password, user.password))) {
         throw new Error('Passwords do not match');
       }
       return true;

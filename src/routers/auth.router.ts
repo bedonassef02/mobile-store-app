@@ -9,10 +9,19 @@ import { isAuthMiddleware } from '../utils/middlewares/is-auth.middleware';
 
 export const router: Router = Router();
 
+// TODO: enable 2FA
+
 router.post('/sign-up', signUpPipe, authController.signUp.bind(authController));
 router.post('/sign-in', signInPipe, authController.signIn.bind(authController));
 
-router.patch('/change-password', isAuthMiddleware,changePasswordPipe, authController.changePassword.bind(authController));
+router.patch(
+  '/change-password',
+  isAuthMiddleware,
+  changePasswordPipe,
+  authController.changePassword.bind(authController),
+);
+
+// TODO: implement reset password
 
 router.use('/google', googleRouter);
 router.use('/github', githubRouter);
