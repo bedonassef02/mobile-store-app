@@ -22,4 +22,14 @@ export class AuthController {
       res.status(401).json({ message: 'Invalid credentials' });
     }
   }
+
+  async changePassword(req: any, res: Response): Promise<void> {
+    const userId: number = parseInt(req.user.id, 10);
+    const password: string = req.body.password;
+    const user: AuthDto = await this.authService.changePassword(
+      userId,
+      password,
+    );
+    res.status(200).json(user);
+  }
 }

@@ -1,4 +1,3 @@
-import * as bcrypt from 'bcrypt';
 import { UserService } from './user.service';
 import { SignUpDto } from '../utils/dtos/auth/sign-up.dto';
 import { SignInDto } from '../utils/dtos/auth/sign-in.dto';
@@ -8,17 +7,17 @@ import { createPayload } from '../utils/helpers/payload.helper';
 import { UserDto } from '../utils/dtos/users/user.dto';
 import { AuthDto } from '../utils/dtos/auth/auth.dto';
 import { signUpListener } from '../utils/events/sign-up.listener';
+import { PasswordService } from './password.service';
 
 export class AuthService {
   constructor(
     private readonly userService: UserService,
     private readonly tokenService: TokenService,
+    private readonly passwordService: PasswordService,
   ) {}
 
-  private readonly SALT: number = 10;
-
   async signUp(signUpDto: SignUpDto): Promise<AuthDto> {
-    signUpDto.password = await this.hashPassword(signUpDto.password);
+    signUpDto.password = await this.passwordService.hash(signUpDto.password);
     const user: UserDto = await this.userService.create(signUpDto);
     await signUpListener(user.id);
     return this.generateResponse(user);
@@ -40,22 +39,22 @@ export class AuthService {
     const user: UserDto = await this.userService.findByEmail(signInDto.email);
     if (
       user &&
-      (await this.comparePassword(signInDto.password, user.password))
+      (await this.passwordService.compare(signInDto.password, user.password))
     ) {
       return this.generateResponse(user);
     }
     return null;
   }
 
-  private async hashPassword(password: string): Promise<string> {
-    return await bcrypt.hash(password, this.SALT);
-  }
-
-  private async comparePassword(
+  async changePassword(
+    userId: number,
     password: string,
-    hash: string,
-  ): Promise<boolean> {
-    return await bcrypt.compare(password, hash);
+  ): Promise<AuthDto> {
+    const hashedPassword = await this.passwordService.hash(password);
+    const user: UserDto = await this.userService.update(userId, {
+      password: hashedPassword,
+    });
+    return this.generateResponse(user);
   }
 
   generateResponse(user: UserDto): AuthDto {

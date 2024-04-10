@@ -31,7 +31,7 @@ export class UserService {
     return await User.findOne({ where: { email, provider } });
   }
 
-  async update(userId: number, updateUserDto: UpdateUserDto): Promise<void> {
+  async update(userId: number, updateUserDto: UpdateUserDto): Promise<any> {
     const user = await this.findOne(userId);
     user.update(updateUserDto);
     user.save();
