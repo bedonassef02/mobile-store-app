@@ -24,9 +24,12 @@ export class AuthService {
     return this.generateResponse(user);
   }
 
-  async findOrCreate(profile: any): Promise<AuthDto> {
-    const email: string = profile?.emails[0].value;
-    let user: UserDto = await this.userService.findByEmail(email, 'google');
+  async findOrCreate(
+    profile: any,
+    email: string,
+    provider: string = 'google',
+  ): Promise<AuthDto> {
+    let user: UserDto = await this.userService.findByEmail(email, provider);
     if (!user) {
       user = await this.userService.createOAuth(profile);
     }
@@ -55,7 +58,7 @@ export class AuthService {
     return await bcrypt.compare(password, hash);
   }
 
-  private generateResponse(user: UserDto): AuthDto {
+  generateResponse(user: UserDto): AuthDto {
     const payload: Payload = createPayload(user);
     const token: string = this.tokenService.generate(payload);
     return { user: payload, token };

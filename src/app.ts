@@ -9,6 +9,7 @@ import { router as wishlistRouter } from './routers/wishlist.router';
 import { router as cartRouter } from './routers/cart.router';
 import { router as orderRouter } from './routers/order.router';
 import { router as paymentRouter } from './routers/payment.router';
+import { router as userRouter } from './routers/user.router';
 import path from 'node:path';
 import session from 'express-session';
 import passport from 'passport';
@@ -36,7 +37,7 @@ export const setupExpressApp = () => {
   app.use(passport.initialize());
   app.use(passport.session());
 
-  const parentDir = path.resolve(__dirname, '..');
+  const parentDir: string = path.resolve(__dirname, '..');
   app.use(express.static(path.join(parentDir, 'public')));
 
   app.use('/auth', authRouter);
@@ -46,6 +47,7 @@ export const setupExpressApp = () => {
   app.use('/cart', cartRouter);
   app.use('/orders', orderRouter);
   app.use('/payment', paymentRouter);
+  app.use('/user', userRouter);
 
   app.use(notFoundException);
 

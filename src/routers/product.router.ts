@@ -3,18 +3,13 @@ import { isAuthMiddleware } from '../utils/middlewares/is-auth.middleware';
 import { createProductPipe } from '../utils/pipes/products/create-product.pipe';
 import { updateProductPipe } from '../utils/pipes/products/update-product.pipe';
 import { deleteProductPipe } from '../utils/pipes/products/delete-product.pipe';
-import { upload } from '../config/multer.config';
 import { multerErrorHandler } from '../utils/error-handling/multer-error.handler';
 import { productController } from '../utils/ioc/controllers.ioc';
 import { roleGuard } from '../utils/guards/role.guard';
 import { UserRole } from '../utils/types/user-role.type';
+import { uploadImagesMiddleware } from '../utils/middlewares/images.middleware';
 
 export const router: Router = Router();
-
-const uploadImagesMiddleware = upload.fields([
-  { name: 'coverImage', maxCount: 1 },
-  { name: 'images', maxCount: 10 },
-]);
 
 router
   .route('/')

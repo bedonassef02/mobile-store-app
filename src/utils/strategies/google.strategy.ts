@@ -1,5 +1,5 @@
 import passport from 'passport';
-import { Profile, Strategy as GoogleStrategy } from 'passport-google-oauth20';
+import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import { authService, userService } from '../ioc/services.ioc';
 import { AuthDto } from '../dtos/auth/auth.dto';
 
@@ -16,8 +16,14 @@ passport.use(
       clientSecret: GOOGLE_CLIENT_SECRET,
       callbackURL: GOOGLE_CALLBACK_URL,
     },
-    async function (accessToken, refreshToken, profile: Profile, cb) {
-      const user: AuthDto = await authService.findOrCreate(profile);
+    async function (
+      _accessToken: string,
+      _refreshToken: string,
+      profile: any,
+      cb,
+    ) {
+      const email: string = profile?.emails[0].value;
+      const user: AuthDto = await authService.findOrCreate(profile, email);
       return cb(null, user);
     },
   ),
@@ -28,6 +34,6 @@ passport.serializeUser((res: any, done) => {
 });
 
 passport.deserializeUser(async (id, done) => {
-  const user = await userService.findOne(parseInt(id + '')); // Replace with your function to retrieve user by ID
+  const user = await userService.findOne(parseInt(id + ''));
   done(null, user);
 });
