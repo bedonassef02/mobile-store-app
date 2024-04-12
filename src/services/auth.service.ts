@@ -12,7 +12,6 @@ import { MailService } from './mail.service';
 import crypto from 'node:crypto';
 import { redis } from '../config/redis.config';
 import speakeasy from 'speakeasy';
-import qrcode from 'qrcode';
 
 export class AuthService {
   constructor(

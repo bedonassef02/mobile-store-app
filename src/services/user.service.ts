@@ -20,6 +20,7 @@ export class UserService {
         'role',
         'twoFactorEnabled',
         'secret',
+        'updatedAt',
       ],
     });
   }

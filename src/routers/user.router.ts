@@ -4,10 +4,11 @@ import { userController } from '../utils/ioc/controllers.ioc';
 import { upload } from '../config/multer.config';
 import { updateImageMiddleware } from '../utils/middlewares/images.middleware';
 import { twoFAMiddleware } from '../utils/middlewares/2fa.middleware';
+import { isUserUpdatedMiddleware } from '../utils/middlewares/is-user-updated.middleware';
 
 export const router: Router = Router();
 
-router.use(isAuthMiddleware, twoFAMiddleware);
+router.use(isAuthMiddleware, isUserUpdatedMiddleware, twoFAMiddleware);
 
 router
   .route('/')

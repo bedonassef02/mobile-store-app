@@ -1,4 +1,4 @@
-import { body, query } from 'express-validator';
+import { body } from 'express-validator';
 import { handleValidationErrorsMiddleware } from '../../error-handling/validation-error';
 import { validatePasswordComplexity } from './common';
 import { redis } from '../../../config/redis.config';
@@ -19,7 +19,6 @@ export const resetPasswordPipe = [
       if (!resetInfo) {
         throw new Error('Invalid token');
       }
-      console.log({ resetInfoObj });
       resetInfoObj = JSON.parse(resetInfo || '');
       if (!resetInfo || resetInfoObj.token !== token) {
         throw new Error('Token not found');

@@ -9,6 +9,7 @@ import { roleGuard } from '../utils/guards/role.guard';
 import { UserRole } from '../utils/types/user-role.type';
 import { uploadImagesMiddleware } from '../utils/middlewares/images.middleware';
 import { twoFAMiddleware } from '../utils/middlewares/2fa.middleware';
+import { isUserUpdatedMiddleware } from '../utils/middlewares/is-user-updated.middleware';
 
 export const router: Router = Router();
 
@@ -17,6 +18,7 @@ router
   .get(productController.findAll.bind(productController))
   .post(
     isAuthMiddleware,
+    isUserUpdatedMiddleware,
     twoFAMiddleware,
     roleGuard([UserRole.ADMIN, UserRole.EDITOR]),
     uploadImagesMiddleware,
@@ -31,6 +33,7 @@ router
   .route('/:id')
   .patch(
     isAuthMiddleware,
+    isUserUpdatedMiddleware,
     twoFAMiddleware,
     roleGuard([UserRole.ADMIN, UserRole.EDITOR]),
     updateProductPipe,
@@ -38,6 +41,7 @@ router
   )
   .delete(
     isAuthMiddleware,
+    isUserUpdatedMiddleware,
     twoFAMiddleware,
     roleGuard([UserRole.ADMIN]),
     deleteProductPipe,

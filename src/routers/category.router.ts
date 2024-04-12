@@ -7,6 +7,7 @@ import { categoryController } from '../utils/ioc/controllers.ioc';
 import { roleGuard } from '../utils/guards/role.guard';
 import { UserRole } from '../utils/types/user-role.type';
 import { twoFAMiddleware } from '../utils/middlewares/2fa.middleware';
+import { isUserUpdatedMiddleware } from '../utils/middlewares/is-user-updated.middleware';
 
 export const router: Router = Router();
 
@@ -15,6 +16,7 @@ router
   .get(categoryController.findAll.bind(categoryController))
   .post(
     isAuthMiddleware,
+    isUserUpdatedMiddleware,
     twoFAMiddleware,
     roleGuard([UserRole.ADMIN, UserRole.EDITOR]),
     createCategoryPipe,
@@ -27,6 +29,7 @@ router
   .route('/:id')
   .patch(
     isAuthMiddleware,
+    isUserUpdatedMiddleware,
     twoFAMiddleware,
     roleGuard([UserRole.ADMIN, UserRole.EDITOR]),
     updateCategoryPipe,
@@ -34,6 +37,7 @@ router
   )
   .delete(
     isAuthMiddleware,
+    isUserUpdatedMiddleware,
     twoFAMiddleware,
     roleGuard([UserRole.ADMIN]),
     deleteCategoryPipe,

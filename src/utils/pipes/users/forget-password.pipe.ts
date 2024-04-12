@@ -2,7 +2,6 @@ import { handleValidationErrorsMiddleware } from '../../error-handling/validatio
 import { checkEmailUniqueness, validateEmailFormat } from './common';
 
 export const forgetPasswordPipe = [
-    
   validateEmailFormat.custom(checkEmailUniqueness),
 
   handleValidationErrorsMiddleware,

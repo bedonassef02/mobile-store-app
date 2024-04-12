@@ -5,11 +5,17 @@ import { deleteCartProductPipe } from '../utils/pipes/cart/delete-cart-product.p
 import { cartProductController } from '../utils/ioc/controllers.ioc';
 import { isAuthMiddleware } from '../utils/middlewares/is-auth.middleware';
 import { twoFAMiddleware } from '../utils/middlewares/2fa.middleware';
+import { isUserUpdatedMiddleware } from '../utils/middlewares/is-user-updated.middleware';
 
 // Initialize the router
 export const router: Router = Router({ mergeParams: true });
 
-router.use(isAuthMiddleware, twoFAMiddleware, cartMiddleware);
+router.use(
+  isAuthMiddleware,
+  isUserUpdatedMiddleware,
+  twoFAMiddleware,
+  cartMiddleware,
+);
 
 // Define routes for cart products
 router

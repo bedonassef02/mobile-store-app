@@ -9,4 +9,5 @@ export type UserDto = {
   secret: string;
   twoFactorEnabled: boolean;
   passed2FA: boolean;
+  updatedAt: Date;
 };

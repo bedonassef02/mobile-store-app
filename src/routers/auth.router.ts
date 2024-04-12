@@ -11,6 +11,7 @@ import { forgetPasswordPipe } from '../utils/pipes/users/forget-password.pipe';
 import { twoFAMiddleware } from '../utils/middlewares/2fa.middleware';
 import { enable2FAPipe } from '../utils/pipes/users/enable-2fa.pipe';
 import { verify2FAPipe } from '../utils/pipes/users/verify-2fa.pipe';
+import { isUserUpdatedMiddleware } from '../utils/middlewares/is-user-updated.middleware';
 
 export const router: Router = Router();
 
@@ -22,6 +23,7 @@ router.post('/sign-in', signInPipe, authController.signIn.bind(authController));
 router.patch(
   '/change-password',
   isAuthMiddleware,
+  isUserUpdatedMiddleware,
   twoFAMiddleware,
   changePasswordPipe,
   authController.changePassword.bind(authController),
@@ -42,6 +44,7 @@ router.patch(
 router.post(
   '/enable-2fa',
   isAuthMiddleware,
+  isUserUpdatedMiddleware,
   twoFAMiddleware,
   enable2FAPipe,
   authController.enable2FA.bind(authController),
