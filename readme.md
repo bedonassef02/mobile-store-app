@@ -1,4 +1,4 @@
-# Mobile Store Ecommerce App with Express.js and MySQL
+# Mobile Store Ecommerce App with Express.js, Typescript, MySQL, Redis and Docker
 
 Welcome to the Mobile Store Ecommerce App, a sophisticated platform for buying and selling mobile devices, meticulously crafted with Express.js, MySQL, TypeScript, Redis, Docker, and other state-of-the-art technologies. Empowering businesses and customers alike, our platform offers a seamless and secure shopping experience.
 
