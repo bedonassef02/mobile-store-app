@@ -34,8 +34,16 @@ export const User = sequelize.define('User', {
   },
   provider: {
     type: DataTypes.STRING(16),
+    defaultValue: 'local',
   },
   providerId: {
+    type: DataTypes.STRING(32),
+  },
+  twoFactorEnabled: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  secret: {
     type: DataTypes.STRING(32),
   },
 });

@@ -6,4 +6,7 @@ export type UserDto = {
   phone: string;
   image: string;
   role: string;
+  secret: string;
+  twoFactorEnabled: boolean;
+  passed2FA: boolean;
 };

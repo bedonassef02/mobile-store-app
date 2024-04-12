@@ -9,6 +9,10 @@ import { AuthDto } from '../utils/dtos/auth/auth.dto';
 import { signUpListener } from '../utils/events/sign-up.listener';
 import { PasswordService } from './password.service';
 import { MailService } from './mail.service';
+import crypto from 'node:crypto';
+import { redis } from '../config/redis.config';
+import speakeasy from 'speakeasy';
+import qrcode from 'qrcode';
 
 export class AuthService {
   constructor(
@@ -59,9 +63,54 @@ export class AuthService {
     return this.generateResponse(user);
   }
 
-  generateResponse(user: UserDto): AuthDto {
-    const payload: Payload = createPayload(user);
+  async forgetPassword(email: string): Promise<void> {
+    const resetPasswordToken: string = crypto.randomBytes(20).toString('hex');
+    const resetPasswordExpires: number = Date.now() + 3600000;
+    const resetInfo = {
+      token: resetPasswordToken,
+      expires: resetPasswordExpires,
+    };
+    await redis.set(`reset-password-${email}`, JSON.stringify(resetInfo));
+    await this.mailService.forgetPassword(email, resetPasswordToken);
+  }
+
+  async resetPassword(
+    email: string,
+    password: string,
+  ): Promise<AuthDto | null> {
+    let user: UserDto = await this.userService.findByEmail(email);
+    const hashedPassword = await this.passwordService.hash(password);
+    user = await this.userService.update(user.id, {
+      password: hashedPassword,
+    });
+    await this.mailService.passwordChanged(email);
+    return this.generateResponse(user);
+  }
+
+  generateResponse(user: UserDto, passed2FA: boolean = false): AuthDto {
+    const payload: Payload = createPayload(user, passed2FA);
     const token: string = this.tokenService.generate(payload);
     return { user: payload, token };
+  }
+
+  async enable2FA(userId: number): Promise<any> {
+    const secret: string = speakeasy.generateSecret({ length: 20 }).base32;
+    await this.userService.update(userId, { secret });
+    return secret;
+  }
+
+  async verify2FA(userId: number, otp: any): Promise<any> {
+    const user: UserDto = await this.userService.findOne(userId);
+    const verified = speakeasy.totp.verify({
+      secret: user.secret,
+      encoding: 'base32',
+      token: otp,
+    });
+    if (verified) {
+      await this.userService.update(userId, { twoFactorEnabled: true });
+      return this.generateResponse(user, true);
+    } else {
+      return null;
+    }
   }
 }

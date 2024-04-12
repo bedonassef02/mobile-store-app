@@ -47,6 +47,19 @@ export class MailService {
     await this.send(mailOptions);
   }
 
+  async forgetPassword(email: string, token: string) {
+    const resetLink: string =
+      process.env.APP_URL + `/reset-password?token=${token}&email=${email}`;
+    const mailOptions: MailOptions = {
+      from: EMAIL,
+      to: email,
+      subject: 'Password Reset',
+      text: 'Password Reset',
+      html: `Click <a href="${resetLink}">here</a> to reset your password.`,
+    };
+    await this.send(mailOptions);
+  }
+
   async payment(email: string) {
     const mailOptions: MailOptions = this.createMailOptions(email, 'payment');
     await this.send(mailOptions);

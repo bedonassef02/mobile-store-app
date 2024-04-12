@@ -11,7 +11,16 @@ export class UserService {
   async findByPk(id: number): Promise<any> {
     return await User.findOne({
       where: { id },
-      attributes: ['id', 'name', 'email', 'phone', 'image', 'role'],
+      attributes: [
+        'id',
+        'name',
+        'email',
+        'phone',
+        'image',
+        'role',
+        'twoFactorEnabled',
+        'secret',
+      ],
     });
   }
 
@@ -27,7 +36,7 @@ export class UserService {
     return User.create({ email, name, provider, providerId: sub });
   }
 
-  async findByEmail(email: string, provider: string = ''): Promise<any> {
+  async findByEmail(email: string, provider: string = 'local'): Promise<any> {
     return await User.findOne({ where: { email, provider } });
   }
 

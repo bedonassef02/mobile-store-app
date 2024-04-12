@@ -32,4 +32,36 @@ export class AuthController {
     );
     res.status(200).json(user);
   }
+
+  async forgetPassword(req: any, res: Response): Promise<void> {
+    const email: string = req.body.email;
+    await this.authService.forgetPassword(email);
+    res
+      .status(200)
+      .json({ message: 'A password reset link has been sent to your email.' });
+  }
+
+  async resetPassword(req: any, res: Response): Promise<void> {
+    const email: string = req.query.email;
+    const password: string = req.body.password;
+    await this.authService.resetPassword(email, password);
+    res.status(200).json({ message: 'Your password has been changed.' });
+  }
+
+  async enable2FA(req: any, res: Response): Promise<void> {
+    const userId: number = parseInt(req.user.id, 10);
+    const secret: string = await this.authService.enable2FA(userId);
+    res.status(201).json({ secret });
+  }
+
+  async verify2FA(req: any, res: Response): Promise<void> {
+    const userId: number = parseInt(req.user.id, 10);
+    const otp: any = req.body.otp;
+    const authDto: AuthDto = await this.authService.verify2FA(userId, otp);
+    if (authDto) {
+      res.status(201).json(authDto);
+    } else {
+      res.status(401).json({ message: 'Invalid otp' });
+    }
+  }
 }

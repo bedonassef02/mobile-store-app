@@ -8,11 +8,11 @@ export const isAuthMiddleware = (
   const token: string | undefined = req.headers.authorization?.split(' ')[1];
 
   if (!token) {
-    res.status(400).json({ message: 'Token is required' });
-    return;
+    return res.status(400).json({ message: 'Token is required' });
   }
   try {
     req.user = tokenService.verify(token);
+
     next();
   } catch (err) {
     res.status(401).json({ message: 'Invalid token' });

@@ -8,6 +8,7 @@ import { productController } from '../utils/ioc/controllers.ioc';
 import { roleGuard } from '../utils/guards/role.guard';
 import { UserRole } from '../utils/types/user-role.type';
 import { uploadImagesMiddleware } from '../utils/middlewares/images.middleware';
+import { twoFAMiddleware } from '../utils/middlewares/2fa.middleware';
 
 export const router: Router = Router();
 
@@ -16,6 +17,7 @@ router
   .get(productController.findAll.bind(productController))
   .post(
     isAuthMiddleware,
+    twoFAMiddleware,
     roleGuard([UserRole.ADMIN, UserRole.EDITOR]),
     uploadImagesMiddleware,
     multerErrorHandler,
@@ -29,12 +31,14 @@ router
   .route('/:id')
   .patch(
     isAuthMiddleware,
+    twoFAMiddleware,
     roleGuard([UserRole.ADMIN, UserRole.EDITOR]),
     updateProductPipe,
     productController.update.bind(productController),
   )
   .delete(
     isAuthMiddleware,
+    twoFAMiddleware,
     roleGuard([UserRole.ADMIN]),
     deleteProductPipe,
     productController.delete.bind(productController),
